@@ -1,0 +1,8 @@
+.project
+.pydevproject
+/**/*.pyc
+/**/.DS_Store
+/.settings/*
+/**/static/sbol/
+/**/static/export/
+/data/

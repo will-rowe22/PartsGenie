@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="static/result/result.css">
+<div class="panel panel-default">
+	<div class="panel-heading">
+  		Results
+  		<button type="submit" class="pull-right btn btn-default btn-xs"
+			data-ng-click="exportOrder()"
+			data-ng-disabled="!connected() || !resultsSaved()">Export</button>
+		<button type="submit" class="pull-right btn btn-default btn-xs"
+			data-ng-click="saveResults()"
+			data-ng-disabled="!connected()">Save</button>
+	</div>
+	<div class="panel-body">
+		<dna-panel
+			dna="result()"
+			selected="selected()"
+			toggle-selected="toggleSelected(args)">
+		</dna-panel>
+		
+		<div class="text-center" data-ng-if="results().length > 1">
+			<uib-pagination
+				data-ng-model="pagination.current"
+				class="pagination-sm"
+				total-items="results().length"
+				max-size="5"
+				items-per-page="1">
+			</uib-pagination>
+		</div>
+	</div>
+</div>

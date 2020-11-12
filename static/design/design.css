@@ -1,0 +1,79 @@
+/***************************** Palette *****************************/
+
+.palette {
+	padding-bottom: 15px
+}
+
+.palette .feature {
+    cursor: move;
+    width: 16px;
+	height: 32px;
+	background-size: 100%;
+}
+
+/***************************** Designs *****************************/
+
+.designs {
+	margin-bottom: 10px;
+}
+
+.designs .dndDraggingSource {
+    display: none;
+}
+
+.designs .dndPlaceholder {
+	width: 100%;
+	height: 50px;
+}
+
+/***************************** Features *****************************/
+
+.design-name {
+	display: table-cell;
+	width: 92%;
+}
+
+.features {
+    height: 100px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+.features .dndPlaceholder {
+	width: 50px;
+	height: 100px;
+}
+
+.feature .dndDraggingSource {
+    display: none;
+}
+
+/***************************** General *****************************/
+
+.glyphicon-grey {
+    opacity: 0.33;
+    margin-left: 5px;
+}
+
+.glyphicon-grey:hover {
+    opacity: 0.66;
+}
+
+.glyphicon-small {
+    font-size: 8px;
+    margin: 3px;
+}
+
+.dndDragging {
+    opacity: 0.5;
+}
+
+.dndDraggingSource {
+    opacity: 1.0;
+}
+
+.dndPlaceholder {
+	display: inline-block;
+ 	background-color: #ddd;
+}

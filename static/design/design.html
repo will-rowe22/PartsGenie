@@ -1,0 +1,73 @@
+<link rel="stylesheet" href="/static/design/design.css" />
+<div class="panel-body">
+	<div class="btn-toolbar palette">
+		<button data-ng-repeat="feature in templates"
+			type="button"
+			class="btn btn-default"
+			data-ng-click="addFeature({args: feature})"
+			dnd-type="'feature'"
+			dnd-draggable="feature"
+			dnd-effect-allowed="copy"
+			uib-tooltip="{{feature.name}}"
+			dnd-dragstart="copyFeature({args: feature})">
+			<div class="feature SO{{feature.typ.replace('http://identifiers.org/so/SO:', '')}}">
+			</div>
+		</button>
+		<div class="pull-right"
+			uib-tooltip="Click or drag Feature buttons to add to Part window, below"
+			tooltip-placement="left">
+			<div class="glyphicon glyphicon-question-sign glyphicon-grey">
+			</div>
+		</div>
+	</div>
+	<div class="panel-group designs" data-ng-if="query().designs.length > 0">
+		<div class="panel panel-default"
+			name="design-{{pagination.current}}"
+			data-ng-form>
+			<div class="panel-heading">
+				<input type="text" class="form-control design-name" data-ng-model="query().designs[pagination.current - 1].name"/>
+				<div class="pull-right">
+					<div class="glyphicon glyphicon-copy glyphicon-grey" data-ng-click="copyDesign()">
+					</div>
+					<div class="glyphicon glyphicon-remove glyphicon-grey" data-ng-click="removeDesign()">
+					</div>
+				</div>
+			</div>
+			<div class="panel-body">
+				<div class="features" dnd-list="query().designs[pagination.current - 1].features" dnd-allowed-types="['feature']">
+					<div data-ng-repeat="feature in query().designs[pagination.current - 1].features"
+						id="{{feature.temp_params.id}}"
+						name="{{feature.temp_params.id}}"
+						data-ng-class="{selected: selected() === feature, invalid: !feature.temp_params.valid}"
+						data-ng-click="toggleSelected({args: feature})"
+						data-ng-form
+						class="dropped feature SO{{feature.typ.replace('http://identifiers.org/so/SO:', '')}}"
+						uib-tooltip="{{feature.name}}"
+						dnd-type="'feature'"
+						dnd-draggable="feature"
+						dnd-effect-allowed="move"
+						dnd-moved="query().designs[pagination.current - 1].features.splice($index, 1)"
+						novalidate>
+						<div class="glyphicon glyphicon-remove pull-right glyphicon-grey glyphicon-small" data-ng-click="query().designs[pagination.current - 1].features.splice($index, 1)">
+						</div>
+						<div class="glyphicon glyphicon-copy pull-left glyphicon-grey glyphicon-small"
+							data-ng-click="bulkUniprot({args: $index})"
+							data-ng-if="feature.typ == 'http://identifiers.org/so/SO:0000316' && !feature.temp_params.fixed">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="glyphicon glyphicon-plus pull-right glyphicon-grey" data-ng-click="addDesign()">
+	</div>
+	<div class="text-center" data-ng-if="query().designs.length > 1">
+		<uib-pagination
+			data-ng-model="pagination.current"
+			class="pagination-sm"
+			total-items="query().designs.length"
+			max-size="5"
+			items-per-page="1">
+		</uib-pagination>
+	</div>
+</div>

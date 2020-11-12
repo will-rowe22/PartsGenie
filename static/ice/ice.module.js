@@ -1,0 +1,1 @@
+var iceApp = angular.module("iceApp", []);

@@ -1,0 +1,16 @@
+.horizontal_scroll
+{
+	overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+.table
+{
+    table-layout: fixed;
+}
+
+.table td
+{
+	overflow: hidden;
+}

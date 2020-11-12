@@ -1,0 +1,99 @@
+<div class="panel panel-default">
+	<div class="panel-heading">Feature</div>
+	<div class="panel-body">
+		<form class="form-horizontal" name="form" role="form">
+			<div class="form-group" data-ng-show="selected().temp_params.required.indexOf('name') !== -1">
+				<label class="col-xs-4 col-form-label">Name:</label>
+				<div class="col-xs-8">
+					<input type="text" class="form-control"
+						data-ng-model="selected().name"
+						placeholder="Name"/>
+				</div>
+			</div>
+			<div class="form-group" data-ng-show="selected().temp_params.required.indexOf('seq') !== -1">
+				<label class="col-xs-4 col-form-label">Sequence:</label>
+				<div class="col-xs-8">
+					<textarea class="form-control sequence"
+						data-ng-model="selected().seq"
+						data-ng-pattern="/^[ACGTacgt\s]+$/"
+						data-ng-required="selected().temp_params.required.indexOf('seq') !== -1"
+						placeholder="Sequence">
+					</textarea>
+				</div>
+			</div>
+			<div class="form-group" data-ng-show="selected().temp_params.required.indexOf('tm') !== -1">
+				<label class="col-xs-4 col-form-label">Tm / &deg;C:</label>
+				<div class="col-xs-8">
+					<input type="number" class="form-control"
+						data-ng-model="selected().parameters['Tm target']"
+						min="20"
+						max="100"
+						step="1"
+						placeholder="Melting temperature"/>
+				</div>
+			</div>
+			<div class="form-group" data-ng-show="selected().temp_params.required.indexOf('tir') !== -1">
+				<label class="col-xs-4 col-form-label">TIR:</label>
+				<div class="col-xs-8">
+					<input type="number" class="form-control"
+						data-ng-model="selected().parameters['TIR target']"
+						min="100"
+						max="200000"
+						step="100"
+						placeholder="Translation initiation rate"/>
+				</div>
+			</div>
+			<div class="form-group" data-ng-show="selected().temp_params.required.indexOf('prot') !== -1">
+				<label class="col-xs-4 col-form-label">Search UniProt:</label>
+				<div class="col-xs-8">
+					<div>
+						<input type="text" class="form-control"
+							data-ng-model="uniprot"
+							placeholder="UniProt search term"/>
+						<button type="submit"
+							data-ng-click="searchUniprot({query: uniprot})"
+							data-ng-disabled="searching() || !uniprot || uniprot.length < 3"
+							class="pull-right btn btn-default btn-xs btn-field">Search</button>
+					</div>
+				</div>
+			</div>
+			<div class="form-group" data-ng-show="selected().temp_params.required.indexOf('prot') !== -1">
+				<label class="col-xs-4 col-form-label">Amino acid sequence:</label>
+				<div class="col-xs-8">
+					<textarea class="form-control sequence"
+						data-ng-model="selected().temp_params.aa_seq"
+						data-ng-class="{mutated: selected().options[0].temp_params.orig_seq && selected().options[0].temp_params.aa_seq !== selected().options[0].temp_params.orig_seq}"
+						data-ng-pattern="/^[ACDEFGHIKLMNPQRSTVWYacdefghiklmnpqrstvwy\s]+$/"
+						data-ng-required="selected().temp_params.required.indexOf('prot') !== -1"
+						placeholder="Sequence">
+					</textarea>
+				</div>
+			</div>
+			<div class="form-group" data-ng-show="selected().temp_params.required.indexOf('prot') !== -1 && isAmbiguousSeq({query: selected().temp_params.aa_seq})">
+				<div class="col-xs-4"></div>
+				<div class="col-xs-8">
+					<div class="alert alert-warning">Coding sequences must be submitted as amino acid sequences</div>
+				</div>
+			</div>
+			<div class="form-group" data-ng-show="selected().temp_params.required.indexOf('len') !== -1">
+				<label class="col-xs-4 col-form-label">Length:</label>
+				<div class="col-xs-8">
+					<input type="number" class="form-control"
+						data-ng-model="selected().end"
+						min="{{selected().temp_params.min_end}}"
+						max="{{selected().temp_params.max_end}}"
+						placeholder="Length"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-xs-4 col-form-label">Fixed?</label>
+				<div class="col-xs-8">
+					<input type="checkbox" class="form-control"
+						data-ng-model="selected().temp_params.fixed"
+						placeholder="Fixed"
+						disabled/>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
