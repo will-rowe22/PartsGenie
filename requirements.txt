@@ -2,4 +2,4 @@ cython
 Flask
 gunicorn
 pySBOL
-git+https://github.com/will-rowe22/synbiochem-py
+synbiochem_py-0.6.34-py3-none-any.whl
