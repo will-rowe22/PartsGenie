@@ -2,7 +2,7 @@
 
 1. Clone repository:
 
-`git clone https://github.com/neilswainston/PartsGenie.git`
+'https://github.com/will-rowe22/PartsGenie.git'
 
 2. Navigate to PartsGenie directory:
 
